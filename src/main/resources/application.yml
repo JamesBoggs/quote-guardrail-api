@@ -1,6 +1,8 @@
 server:
   # Render and Railway pass the port in $PORT; 8080 when running locally
   port: ${PORT:8080}
+  # Trust the hosting proxy's X-Forwarded-* headers so generated URLs (e.g. Swagger's server) use https
+  forward-headers-strategy: framework
 
 spring:
   application:

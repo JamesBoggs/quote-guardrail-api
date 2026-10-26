@@ -4,7 +4,9 @@ A small REST service in Java and Spring Boot that checks a sales quote against p
 
 It is the approval step from [MarginGuard](https://jamesboggs.online/#work), rebuilt as a standalone Java service. I built it to get up to speed on Spring Boot; my production work has been in Python and SQL.
 
-**Live demo:** _add your Railway URL here_ (opens the interactive API docs; if the server has been idle, the first request can take ~20 seconds while it wakes up)
+[![CI](https://github.com/JamesBoggs/quote-guardrail-api/actions/workflows/ci.yml/badge.svg)](https://github.com/JamesBoggs/quote-guardrail-api/actions/workflows/ci.yml)
+
+**Live demo:** [quote-guardrail-api-production.up.railway.app](https://quote-guardrail-api-production.up.railway.app) (opens the interactive API docs: pick an endpoint, click **Try it out**, then **Execute**)
 
 ## The rules
 
@@ -98,6 +100,7 @@ docker run -p 8080:8080 quote-guardrail-api
 1. In Railway: **New Project → Deploy from GitHub repo**, pick this repo. Railway finds the `Dockerfile`; `railway.json` sets the health check.
 2. Open the service → **Settings → Networking → Generate Domain** to get a public `*.up.railway.app` URL.
 3. Optional, to keep usage low: **Settings → Serverless** (the app sleeps when idle and wakes on the next request).
-4. Put the URL at the top of this README and on the site card.
+
+When generating the domain, set the target port to 8080.
 
 The app reads Railway's `PORT` variable automatically (`server.port: ${PORT:8080}`), and the JVM is capped to fit the free plan's 0.5 GB of memory.
