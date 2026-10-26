@@ -28,6 +28,11 @@ springdoc:
     operations-sorter: method
     try-it-out-enabled: true
 
+# Sites allowed to call the API from a browser (see CorsConfig.java)
+app:
+  cors:
+    allowed-origins: https://jamesboggs.online,https://www.jamesboggs.online,https://*.vercel.app,http://localhost:*
+
 # Pricing policy (see GuardrailPolicy.java)
 guardrail:
   margin-floor-pct: 28.0

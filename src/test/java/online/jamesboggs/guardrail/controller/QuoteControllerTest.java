@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -84,6 +85,19 @@ class QuoteControllerTest {
         mvc.perform(post("/api/quotes/evaluate").contentType(MediaType.APPLICATION_JSON).content(body))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.fields.customerId").exists());
+    }
+
+    @Test
+    void allowsThePortfolioSiteToCallTheApi() throws Exception {
+        mvc.perform(get("/api/customers").header("Origin", "https://jamesboggs.online"))
+                .andExpect(status().isOk())
+                .andExpect(header().string("Access-Control-Allow-Origin", "https://jamesboggs.online"));
+    }
+
+    @Test
+    void rejectsUnknownSites() throws Exception {
+        mvc.perform(get("/api/customers").header("Origin", "https://example.com"))
+                .andExpect(status().isForbidden());
     }
 
     @Test
