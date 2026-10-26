@@ -2,7 +2,7 @@
 
 A small REST service in Java and Spring Boot that checks a sales quote against pricing policy and returns a decision: **APPROVE**, **ROUTE_TO_VP** or **BLOCK**, with the reasons.
 
-It is the approval step from [MarginGuard](https://jamesboggs.online/#work), rebuilt as a standalone Java service. I built it to get up to speed on Spring Boot; my production work has been in Python and SQL.
+It is the approval step from [Margin Retention](https://jamesboggs.online/marginguard), rebuilt as a standalone Java service. I built it to get up to speed on Spring Boot; my production work has been in Python and SQL.
 
 [![CI](https://github.com/JamesBoggs/quote-guardrail-api/actions/workflows/ci.yml/badge.svg)](https://github.com/JamesBoggs/quote-guardrail-api/actions/workflows/ci.yml)
 
